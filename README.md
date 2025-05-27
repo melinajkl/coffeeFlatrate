@@ -35,8 +35,9 @@ Authentifizierung muss nicht implementiert aber beschrieben sein.
     * medium +: 5 besondere Kaffees pro Woche (19€/pro Woche)
     * large: 7 normale Kaffees pro Woche (15€/Woche)
     * large+: 7 besondere Kaffees pro Woche (22€/Woche)
+    * unlimited: 200 Filterkaffee pro Woche (50€/Woche)
+    * unlimited+: 200 Kaffees pro Woche 
 * Reports/Backgroundtasks:
-
   * wöchentlich Auswertung mit neu abgeschlossenen Abos, genutzten Kaffee und Bestandskunden
   * monatliche Reports mit Einnahmen und Ausgaben
 
@@ -48,7 +49,7 @@ Authentifizierung muss nicht implementiert aber beschrieben sein.
 
 ### Funktionen für Aboinhaber\:innen:
 
-* Übersicht über Abo
+* Übersicht über Abo, man kann nur ein Abo haben -> E-Mail adresse muss unique sein
 * Statistik wann wieviel Kaffee getrunken wurde
 * Erinnerungen, dass noch Kaffee abgeholt werden kann
 * Zahlungsstatus

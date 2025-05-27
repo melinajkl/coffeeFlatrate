@@ -1,0 +1,23 @@
+GET http://localhost:8000/users
+
+### Valid request
+POST http://localhost:8000/users
+Content-Type: application/json
+
+{
+  "name": "Julia",
+  "email": "julia@example.com",
+  "abo_id": 1,
+  "paid": "True"
+}
+
+### Invalid (short name, missing email)
+POST http://localhost:8000/users
+Content-Type: application/json
+
+{
+  "name": "J",
+  "abo_id": 1
+}
+
+## request
