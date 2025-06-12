@@ -1,0 +1,52 @@
+###
+POST http://localhost:8000/abomodels/
+Content-Type: application/json
+
+{
+    "id": "small",
+    "specialdrinks": true, 
+    "priceperweek": 7,
+    "amount": 3
+}
+
+### second abomodel
+POST http://localhost:8000/abomodels/
+Content-Type: application/json
+
+{
+    "id": "small+",
+    "specialdrinks": true, 
+    "priceperweek": 10,
+    "amount": 3
+}
+### change model details (-> for price adjustments)
+# only for adjustment purposes during development
+PATCH http://localhost:8000/abomodels/
+Content-Type: application/json
+
+{
+    "id": "small",
+    "specialdrinks": false, 
+    "priceperweek": 7,
+    "amount": 3
+}
+
+### get all models
+GET http://localhost:8000/abomodels/
+
+### get by id
+GET  http://localhost:8000/abomodels/small
+
+### post weird model
+POST http://localhost:8000/abomodels/
+Content-Type: application/json
+
+{
+    "id": "hhasas",
+    "specialdrinks": true, 
+    "priceperweek": 333,
+    "amount": 32
+}
+
+### Delete with id
+DELETE http://localhost:8000/abomodels/hhasas

@@ -1,18 +1,13 @@
 from fastapi import FastAPI
-from api import users, cafes, abos, report
+from controllers import customer_controller, abomodel_controller, employee_controller
+from models import model
+from database import engine
 
-app = FastAPI(
-    title="Kaffee Abo System",
-    description="Ein Backend-System zur Verwaltung von Kaffeeabos für Cafés",
-    version="0.1.0"
-)
+model.Base.metadata.create_all(bind=engine)
 
-# Include your routers
-app.include_router(users.router, prefix="/users", tags=["Users"])
-# app.include_router(cafes.router, prefix="/cafes", tags=["Cafés"])
-# app.include_router(abos.router, prefix="/abos", tags=["Abos"])
-# app.include_router(report.router, prefix="/reports", tags=["Reports"])
+app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"message": "Willkommen im Kaffee-Abo-System API!"}
+# Register routers
+app.include_router(customer_controller.router)
+app.include_router(employee_controller.router)
+app.include_router(abomodel_controller.router)
