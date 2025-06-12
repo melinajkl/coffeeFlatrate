@@ -30,7 +30,7 @@ Aufgaben des BackEnds:
 * Abos verwalten
   * Abotemplates, die genutzt oder abgeändert werden können:
     * small: 3 normale Kaffees pro Woche (7€/Woche)
-    * small+: 3 besondere Kaffees pro Woche (12€/Woche)
+    * small+: 3 besondere Kaffees pro Woche (10€/Woche)
     * medium: 5 normale Kaffees pro Woche (11€/pro Woche)
     * medium+: 5 besondere Kaffees pro Woche (19€/pro Woche)
     * large: 7 normale Kaffees pro Woche (15€/Woche)

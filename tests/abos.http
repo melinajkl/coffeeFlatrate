@@ -19,6 +19,72 @@ Content-Type: application/json
     "priceperweek": 10,
     "amount": 3
 }
+
+### 
+POST http://localhost:8000/abomodels/
+Content-Type: application/json
+
+{
+    "id": "medium",
+    "specialdrinks": false, 
+    "priceperweek": 11,
+    "amount": 5
+}
+
+### 
+POST http://localhost:8000/abomodels/
+Content-Type: application/json
+
+{
+    "id": "medium+",
+    "specialdrinks": true, 
+    "priceperweek": 19,
+    "amount": 5
+}
+
+### 
+POST http://localhost:8000/abomodels/
+Content-Type: application/json
+
+{
+    "id": "large",
+    "specialdrinks": false, 
+    "priceperweek": 15,
+    "amount": 7
+}
+
+### 
+POST http://localhost:8000/abomodels/
+Content-Type: application/json
+
+{
+    "id": "large+",
+    "specialdrinks": true, 
+    "priceperweek": 22,
+    "amount": 7
+}
+
+### 
+POST http://localhost:8000/abomodels/
+Content-Type: application/json
+
+{
+    "id": "unlimited",
+    "specialdrinks": false, 
+    "priceperweek": 30,
+    "amount": 999
+}
+
+### 
+POST http://localhost:8000/abomodels/
+Content-Type: application/json
+
+{
+    "id": "unlimited+",
+    "specialdrinks": true, 
+    "priceperweek": 40,
+    "amount": 999
+}
 ### change model details (-> for price adjustments)
 # only for adjustment purposes during development
 PATCH http://localhost:8000/abomodels/

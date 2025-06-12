@@ -36,7 +36,7 @@ def get_all(db: Session) -> List[AboModel]:
     return db.query(AboModel).all()
     
 def get_by_id(id: str, db: Session) -> AboModel: 
-    model = db.query(AboModel).filter(id == id).first()
+    model = db.query(AboModel).filter(AboModel.id == id).first()
     
     if not model:
         raise HTTPException(status_code = 404, detail = "No model with given id found.")
