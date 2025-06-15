@@ -1,3 +1,4 @@
+# bisher nur positive Tests
 ###
 POST http://localhost:8000/abomodels/
 Content-Type: application/json

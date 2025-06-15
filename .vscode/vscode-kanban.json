@@ -1,0 +1,25 @@
+{
+  "todo": [
+    {
+      "assignedTo": {
+        "name": "Melina Klein"
+      },
+      "creation_time": "2025-06-15T13:36:08.536Z",
+      "id": "1",
+      "references": [],
+      "title": "employee table crud"
+    },
+    {
+      "assignedTo": {
+        "name": "Melina Klein"
+      },
+      "creation_time": "2025-06-15T13:36:36.230Z",
+      "id": "2",
+      "references": [],
+      "title": "customer table crud"
+    }
+  ],
+  "in-progress": [],
+  "testing": [],
+  "done": []
+}

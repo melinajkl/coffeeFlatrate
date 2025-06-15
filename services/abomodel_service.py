@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from models.model import AboModel
+from models import functions
 from schemas.abomodel import AboModelCreate
 from fastapi import HTTPException
 from typing import List
@@ -9,7 +10,7 @@ def create_abomodel(db: Session, model: AboModelCreate) -> AboModel:
         id=model.id,
         specialdrinks=model.specialdrinks,
         priceperweek=model.priceperweek,
-        amount=model.amount  # new
+        amount=model.amount
     )
     db.add(db_model)
     db.commit()
@@ -36,15 +37,7 @@ def get_all(db: Session) -> List[AboModel]:
     return db.query(AboModel).all()
     
 def get_by_id(id: str, db: Session) -> AboModel: 
-    model = db.query(AboModel).filter(AboModel.id == id).first()
-    
-    if not model:
-        raise HTTPException(status_code = 404, detail = "No model with given id found.")
-    
-    return model
+   return functions.get_by_id(AboModel, id, db)
 
 def delete_by_id(id: str, db: Session):
-    model = get_by_id(id, db)  # reuse your service
-    db.delete(model)
-    db.commit()
-    return {"message": f"AboModel with id '{id}' deleted"}
+    return functions.delete_by_id(AboModel, id, db)

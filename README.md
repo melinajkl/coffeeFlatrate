@@ -95,7 +95,7 @@ Inputvalidierung bedeutet, alle Eingaben der Nutzer oder Clients systematisch au
 
   * E-Mail-Adressen müssen gültig formatiert sein und dürfen nicht doppelt vergeben werden (Unique Constraint).
   * Abo-Daten (Laufzeiten, Preise) müssen den vorgegebenen Mustern entsprechen.
-  * Passwörter müssen Mindestanforderungen erfüllen (Länge, Komplexität).
+  * Bankdaten der Cafés wie IBAN und BIC werden mithilfe von Field Validators überprüft.
   * Bei Änderung von Abos wird geprüft, ob der Kunde bereits ein Abo besitzt.
 
 ---

@@ -1,47 +1,31 @@
-
-POST http://localhost:8000/cafes
+POST http://localhost:8000/cafes/
 Content-Type: application/json
 
 {
-  "id": 1,
-  "name": "Café am Rande der Welt",
-  "street": "Randstraße",
-  "housenumber": 11,
-  "town": "Weltstadt", 
-  "zip": "77777",
-  "adminmail": "cafe@mail.com"
-}
-### add second cafe
-
-POST http://localhost:8000/cafes
-Content-Type: application/json
-
-{
-  "id": 2,
-  "name": "Café am Rande des Universums",
-  "street": "Randstraße",
-  "housenumber": 12,
-  "town": "Milchstadt", 
-  "zip": "71111",
-  "adminmail": "caf2@mail.com"
-}
-
-### get all cafes
-GET http://localhost:8000/cafes
-
-### post first new cafe
-POST http://localhost:8000/cafes
-Content-Type: application/json
-
-{
-  "id": 1,
-  "name": "Café am Rande der Welt",
-  "street": "Randstraße",
-  "housenumber": 11,
-  "town": "Weltstadt", 
-  "zip": "77777",
-  "adminmail": "cafe@mail.com"
+  "id": "Café am Rande der Welt",
+  "iban": "DE44500105175407324931",
+  "bic": "DEUTDEFF",
+  "account_holder": "café am rande der welt",
+  "abomodels": ["small", "small+"]
 }
 
 ###
 GET http://localhost:8000/cafes/
+
+### 
+GET http://localhost:8000/cafes/Café_am_Rande_der_Welt/abo
+
+###
+DELETE http://localhost:8000/cafes/Café_am_Rande_der_Welt
+
+###
+PATCH http://localhost:8000/cafes/
+Content-Type: application/json
+
+{
+  "id": "Café am Rande der Welt",
+  "iban": "DE97 2014 1177 2007 1112 45",
+  "bic": "COBADEH88",
+  "account_holder": "café am rande der welt",
+  "abomodels": ["small", "small+"]
+}
