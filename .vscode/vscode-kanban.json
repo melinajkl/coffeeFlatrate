@@ -4,11 +4,13 @@
       "assignedTo": {
         "name": "Melina Klein"
       },
-      "creation_time": "2025-06-15T13:36:08.536Z",
-      "id": "1",
+      "creation_time": "2025-06-15T18:32:38.106Z",
+      "id": "3",
       "references": [],
-      "title": "employee table crud"
-    },
+      "title": "abo table crud"
+    }
+  ],
+  "in-progress": [
     {
       "assignedTo": {
         "name": "Melina Klein"
@@ -19,7 +21,16 @@
       "title": "customer table crud"
     }
   ],
-  "in-progress": [],
-  "testing": [],
+  "testing": [
+    {
+      "assignedTo": {
+        "name": "Melina Klein"
+      },
+      "creation_time": "2025-06-15T13:36:08.536Z",
+      "id": "1",
+      "references": [],
+      "title": "employee table crud"
+    }
+  ],
   "done": []
 }

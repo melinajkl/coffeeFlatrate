@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Boolean, Integer, ForeignKey, Date, Table, JSON
+from sqlalchemy import Column, PrimaryKeyConstraint, String, Boolean, Integer, ForeignKey, Date, Table, JSON
 from sqlalchemy.dialects.sqlite import DATETIME
 from sqlalchemy.orm import relationship
 from uuid import uuid4
@@ -27,7 +27,7 @@ class Cafe(Base):
         secondary=AboCafe,
         back_populates="cafes"
     )
-
+    employees = relationship("Employee", back_populates="cafe")
 
 class AboModel(Base):
     __tablename__ = "abomodels"
@@ -47,13 +47,17 @@ class AboModel(Base):
 class Employee(Base):
     __tablename__ = "employees"
 
-    id = Column(String, primary_key=True, default=lambda: str(uuid4()))
-    name = Column(String)
-    hashed_password = Column(String)
+    id = Column(String, nullable=False)
+    cafe_id = Column(String, ForeignKey("cafes.id"), nullable=False)
+    name = Column(String, nullable=False)
+    hashed_password = Column(String, nullable=False)
     sudo = Column(Boolean, default=False)
 
-    cafe_id = Column(String, ForeignKey("cafes.id"))
-    cafe = relationship("Cafe", backref="employees")
+    __table_args__ = (
+        PrimaryKeyConstraint('id', 'cafe_id'),
+    )
+
+    cafe = relationship("Cafe", back_populates="employees")
 
 class Abo(Base):
     __tablename__ = "abos"

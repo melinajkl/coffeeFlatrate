@@ -1,0 +1,55 @@
+POST http://localhost:8000/employees
+Content-Type: application/json
+
+{
+    "id" : "1234",
+    "name": "Winfried",
+    "password": "strongpassword1234",
+    "sudo": true,
+    "cafe_id": "Café_am_Rande_der_Welt"
+}
+###
+GET http://localhost:8000/employees/Café_am_Rande_der_Welt/employee/12434
+
+###
+GET http://localhost:8000/employees/Café_am_Rande_der_Welt/employees
+###
+POST http://localhost:8000/employees/
+Content-Type: application/json
+
+{
+    "id" : "1244",
+    "name": "Willa",
+    "password": "strongpassword1234",
+    "sudo": false,
+    "cafe_id": "Café_am_Rande_der_Welt"
+}
+
+###
+PATCH http://localhost:8000/employees/
+Content-Type: application/json
+
+{
+    "id" : "12434",
+    "name": "Alfredo",
+    "password": "strongpassword1234",
+    "sudo": false,
+    "cafe_id": "Café_am_Rande_der_Welt"
+}
+###
+DELETE http://localhost:8000/employees/
+Content-Type: application/json
+
+{
+    "id": "1244",
+    "cafe_id": "Café_am_Rande_der_Welt"
+}
+
+### Login Employee
+POST http://127.0.0.1:8000/employees/login
+Content-Type: application/x-www-form-urlencoded
+Accept: application/json
+
+employee_id=12434&cafe_id=Caf%C3%A9_am_Rande_der_Welt&password=strongpassword1234
+
+### example protected troute: creating a new abonnement in abocontroller

@@ -26,7 +26,7 @@ Aufgaben des BackEnds:
 
 ### Funktionen für Hauptadmins (Caféverwalter\:innen):
 
-* Pro Kaffee gibt es wenige Hauptadmins, die das Angebot des Kaffees verwalten und 
+* Pro Kaffee gibt es wenige einen Hauptadmins, die das Angebot des Kaffees verwalten und 
 * Abos verwalten
   * Abotemplates, die genutzt oder abgeändert werden können:
     * small: 3 normale Kaffees pro Woche (7€/Woche)
@@ -67,7 +67,7 @@ Diese drei Begriffe werden oft verwechselt, sind aber grundlegend verschieden un
 
 * **Autorisierung** (engl. *Authorization*):
   Nachdem ein Nutzer authentifiziert wurde, entscheidet die Autorisierung, was der Nutzer tun darf. Sie legt Rollen und Berechtigungen fest und sorgt dafür, dass Nutzer nur auf die Ressourcen zugreifen können, die ihnen erlaubt sind.
-  Beispiel: Ein Hauptadmin darf Abo-Vorlagen anpassen, Mitarbeiter jedoch nicht. Ein Kunde kann nur sein eigenes Abo einsehen, aber keine anderen verwalten.
+  Beispiel: Ein Hauptadmin darf Abo-Vorlagen anpassen, Mitarbeiter jedoch nicht. Ein Kunde kann nur sein eigenes Abo einsehen, aber keine anderen.
 
 * **Authentisierung** (oft synonym mit *Login* oder *Anmeldung* verwendet):
   Dies bezeichnet den Vorgang, wie ein Nutzer seine Identität gegenüber dem System bestätigt, z.B. durch Einloggen mit Benutzerdaten. Beim Login wird oft ein Token (z.B. ein JSON Web Token, JWT) ausgestellt, der für die Dauer der Session den Zugang ermöglicht.
@@ -93,8 +93,8 @@ Inputvalidierung bedeutet, alle Eingaben der Nutzer oder Clients systematisch au
 
 * **Beispiele im Projekt:**
 
-  * E-Mail-Adressen müssen gültig formatiert sein und dürfen nicht doppelt vergeben werden (Unique Constraint).
-  * Abo-Daten (Laufzeiten, Preise) müssen den vorgegebenen Mustern entsprechen.
+  * E-Mail-Adressen müssen gültig formatiert.
+  * Abo-Daten, Nutzer und Daten von Cafes müssen den vorgegebenen Mustern entsprechen. Es werden Pydantic-Schemata genutzt.
   * Bankdaten der Cafés wie IBAN und BIC werden mithilfe von Field Validators überprüft.
   * Bei Änderung von Abos wird geprüft, ob der Kunde bereits ein Abo besitzt.
 
@@ -137,6 +137,9 @@ Viele Systeme benötigen zeitgesteuerte Prozesse, die automatisch und regelmäß
   * Konsistente, zeitnahe Auswertungen und Benachrichtigungen.
   * Bessere Skalierbarkeit und Wartbarkeit.
 
+* **Im Projekt:**
+  * Es wird nicht automatisch durchgeführt aber man kann sich Statistiken geben lassen und als Dummy implementiert. So lassen sich die Dokumente an einem zentralen Ort einsehen und werden nicht erst bei der Anfrage generiert.
+  -> Würde man diese als wiederkehrende Aufgaben implementieren könnte man es genauso handhaben.
 ---
 
 ### 5. **Sessionhandling**
