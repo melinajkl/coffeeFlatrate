@@ -1,0 +1,26 @@
+POST http://localhost:8000/customers/
+Content-Type: application/json
+
+{
+    "name": "Luisa",
+    "password": "StrongPassword4321",
+    "email": "luisasemail@mail.com",
+    "paymentMethod": 0
+}
+
+### 
+PATCH http://localhost:8000/customers/0fbfe055-9e4a-440f-bedc-a4b432245ee9
+Content-Type: application/json
+
+{
+    "name": "Luisa",
+    "password": "StrongPassword4321",
+    "email": "luisaemail@mail.com",
+    "paymentMethod": 0
+}
+
+###
+GET http://localhost:8000/customers/0fbfe055-9e4a-440f-bedc-a4b432245ee9/overview
+
+###
+GET http://localhost:8000/customers/0fbfe055-9e4a-440f-bedc-a4b432245ee9/details

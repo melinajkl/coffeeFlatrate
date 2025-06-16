@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from datetime import date
-from typing import Optional
+from typing import Optional, Any
 
 class CustomerCreate(BaseModel):
     name: str
@@ -17,3 +17,10 @@ class CustomerOut(BaseModel):
 
     class Config:
         orm_mode = True
+
+class CustomerStats(BaseModel):
+    name: str
+    email: EmailStr
+    drinksDrunk: int 
+    drinkLog: Any
+    activated: bool
