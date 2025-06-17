@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from models.model import Cafe, AboModel
-from models import functions
+from . import utility_crud
 from schemas.cafe import CafeCreate, CafeOut, CafeOutB
 from fastapi import HTTPException
 from utils import validation
@@ -29,10 +29,10 @@ def get_all_cafes(db: Session):
     return db.query(Cafe).all()
 
 def get_by_id(id: str, db: Session):
-    return functions.get_by_id(Cafe, id, db)
+    return utility_crud.get_by_id(Cafe, id, db)
 
 def delete_by_id(id: str, db:Session):
-    return functions.delete_by_id(Cafe, id, db)
+    return utility_crud.delete_by_id(Cafe, id, db)
 
 def get_cafe_w_abos(cafe_id: str, db: Session) -> CafeOutB:
     cafe = db.query(Cafe).filter(Cafe.id == cafe_id).first()

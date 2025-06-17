@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from models.model import Customer
-from models.functions import *
+from utility_crud import *
 from schemas.customer import CustomerCreate, CustomerOut, CustomerStats
 from utils.security import hash_password
 import datetime
