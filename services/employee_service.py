@@ -12,13 +12,12 @@ Functions:
 - patch_employee
 - delete_employee
 """
+from typing import List
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
 from models.model import Employee
-from models.functions import *
 from schemas.employee import EmployeeCreate, EmployeeOut, EmployeeDelete
 from utils.security import hash_password
-from typing import List
 
 def create_employee(db: Session, data: EmployeeCreate) -> Employee:
     """

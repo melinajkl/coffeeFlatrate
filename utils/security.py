@@ -1,8 +1,8 @@
 """Utility functions for hashing and verifying passwords, 
 as well as creating access tokens using JWT."""
 
-from passlib.context import CryptContext
 from datetime import datetime, timedelta
+from passlib.context import CryptContext
 from jose import jwt
 
 # SECRET + settings

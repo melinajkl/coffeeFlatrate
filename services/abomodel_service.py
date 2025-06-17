@@ -9,8 +9,8 @@ Uses utility CRUD functions for common database operations.
 from typing import List
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
-from models.model import AboModel
 from models import utility_crud
+from models.model import AboModel
 from schemas.abomodel import AboModelCreate
 
 def create_abomodel(db: Session, model: AboModelCreate) -> AboModel:

@@ -21,13 +21,13 @@ class CafeCreate(BaseModel):
     abomodels: List[str]
 
     @field_validator("iban")
-    def validate_iban(cls, v):
+    def validate_iban(self, v):
         if not validate_iban_format(v):
             raise ValueError("Invalid IBAN format")
         return v.replace(" ", "").upper()
 
     @field_validator("bic")
-    def validate_bic(cls, v):
+    def validate_bic(self, v):
         if not validate_bic_format(v):
             raise ValueError("Invalid BIC format")
         return v.upper()
