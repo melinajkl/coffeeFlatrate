@@ -21,7 +21,7 @@
       "title": "customer table crud"
     }
   ],
-  "testing": [
+  "done": [
     {
       "assignedTo": {
         "name": "Melina Klein"
@@ -31,6 +31,5 @@
       "references": [],
       "title": "employee table crud"
     }
-  ],
-  "done": []
+  ]
 }

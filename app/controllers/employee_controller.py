@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from schemas.token import Token
 from schemas.employee import EmployeeCreate, EmployeeOut, EmployeeDelete
 from services import employee_service, auth_service
-from database import get_db
+from app.database import get_db
 
 router = APIRouter(prefix="/employees", tags=["employees"])
 

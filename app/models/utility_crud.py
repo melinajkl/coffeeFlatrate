@@ -8,7 +8,7 @@ It allows you to retrieve and delete records from any table using their ID.
 from typing import Type
 from sqlalchemy.orm import Session
 from fastapi import HTTPException
-from database import Base  # Import your declarative base class
+from app.database import Base  # Import your declarative base class
 
 
 def get_by_id(table: Type[Base], id: str, db: Session):

@@ -9,7 +9,7 @@ from uuid import uuid4
 from sqlalchemy import Column, PrimaryKeyConstraint, String, Boolean
 from sqlalchemy import Integer, ForeignKey, Date, Table, JSON
 from sqlalchemy.orm import relationship
-from database import Base
+from app.database import Base
 
 # Association table for many-to-many between Cafe and AboModel
 AboCafe = Table(
