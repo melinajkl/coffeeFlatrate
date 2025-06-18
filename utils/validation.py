@@ -38,3 +38,16 @@ def validate_bic_format(bic: str) -> bool:
     """
     bic = bic.strip().upper()
     return bool(re.match(r"^[A-Z]{4}[A-Z]{2}[A-Z0-9]{2}([A-Z0-9]{3})?$", bic))
+
+def validate_bankdetails(iban: str, bic: str) -> bool:
+    """
+    Helper function to validate both iban and bic
+
+    Args:
+        iban (str): The IBAN string to validate
+        bic (str): The BIC string to validate
+
+    Returns:
+        bool: returns TRUE if both arguments are correct
+    """
+    return (validate_bic_format(bic) and validate_iban_format(iban))

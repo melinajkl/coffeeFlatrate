@@ -10,7 +10,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from schemas.cafe import CafeCreate, CafeOut, CafeOutB
 from services import cafe_service
-from app.database import get_db
+from database import get_db
 
 router = APIRouter(prefix="/cafes", tags=["cafe"])
 

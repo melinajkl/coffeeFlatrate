@@ -17,7 +17,7 @@ from sqlalchemy.orm import Session
 from schemas.customer import CustomerCreate, CustomerOut
 from schemas.token import Token
 from services import customer_service, auth_service
-from app.database import get_db
+from database import get_db
 
 router = APIRouter(prefix="/customers", tags=["customers"])
 

@@ -11,7 +11,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from schemas.abomodel import AboModelCreate, AboModelBase
 from services import abomodel_service
-from app.database import get_db
+from database import get_db
 
 router = APIRouter(prefix="/abomodels", tags=["abo models"])
 
@@ -61,7 +61,7 @@ def get_all_abomodels(db: Session = Depends(get_db)):
 
 
 @router.get("/{id}", response_model=AboModelBase)
-def get_by_id(id: str, db: Session = Depends(get_db)):
+def get_by_id(ida: str, db: Session = Depends(get_db)):
     """
     Retrieve a single AboModel by its ID.
 
@@ -72,11 +72,11 @@ def get_by_id(id: str, db: Session = Depends(get_db)):
     Returns:
         AboModelBase: The matching subscription model.
     """
-    return abomodel_service.get_by_id(id, db)
+    return abomodel_service.get_by_id(ida, db)
 
 
 @router.delete("/{id}")
-def delete_model(id: str, db: Session = Depends(get_db)):
+def delete_model(ida: str, db: Session = Depends(get_db)):
     """
     Delete an AboModel by its ID.
 
@@ -87,4 +87,4 @@ def delete_model(id: str, db: Session = Depends(get_db)):
     Returns:
         dict: A confirmation message after deletion.
     """
-    return abomodel_service.delete_by_id(id, db)
+    return abomodel_service.delete_by_id(ida, db)
