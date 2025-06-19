@@ -5,24 +5,13 @@ Das Projekt zielt darauf ab, ein Backend-System für ein abonnementbasiertes Kaf
 Hiermit richtet es sich an Cafés, die ihren Kund:innen die Möglichkeit bieten möchten, Vorteile zu erlangen bei regelmäßigem Besuch des Cafés. 
 Dabei können die Abomodelle jeweils vom Verwalter eines Kaffees angepasst werden.
 So kann eine langfristige Kundenbindung anvisiert werden und bieten sowohl Konsumenten als auch Cafés weitere Vorteile. 
-Wichtig ist hierbei, dass die jeweiligen Systeme einfach zu verwalten und auf kleine Cafés zugeschnitten werden können.
+Wichtig ist, dass die jeweiligen Systeme einfach zu verwalten und auf kleine Cafés zugeschnitten werden können.
 Hierbei hat jedes Café sein eigenes System, sodass Probleme, die an einem Container, falschen Konfigurationen oder andere, die nur einzelne Kunden betreffen nicht alle Nutzer betreffen. So wird die Zuverlässigkeit erhöht.
 
 ## Beschreibung
 Das Projekt wird mit einem FastAPI-Backend umgesetzt, die REST-Schnittstellen für mobile und webbasierte UIs bereitstellen. 
-Die Datenpersistenz wird mit einer Datenbank (beispielsweise PostgreSQL) gewährleistet. Diese wird in der Prüfungsleistung mit einer JSON-Datei simuliert. 
+Die Datenpersistenz wird mit einer Datenbank (hier mit sqlite) gewährleistet.
 Es gibt ein rollenbasiertes Zugriffssystem, welches im weiteren Verlauf weiter erklärt wird.
-
-* 3 - 4 API Punkte
-
-Aufgaben des BackEnds:
-
-* Anlagen neuer Kunden und Aboverwaltung
-* Kunden können Statistiken abrufen, Abolaufzeit etc. nach Anmeldung
-* 5 ct sparen bei Voranmeldung
-* Auswertung für Café -> Reports wie viele Abos gibt es und wie viele werden wirklich genutzt
-* QR-Code (Sicherheit)
-* Tracken ob Kaffee eingelöst würde
 
 ### Funktionen für Hauptadmins (Caféverwalter\:innen):
 
@@ -40,10 +29,11 @@ Aufgaben des BackEnds:
 * Reports/Backgroundtasks:
   * wöchentlich Auswertung mit neu abgeschlossenen Abos, genutzten Kaffee und Bestandskunden
   * monatliche Reports mit Einnahmen und Ausgaben
+* Verwaltung von Mitarbeitern
 
 ### Funktionen für Admins (Cafémitarbeiter\:innen):
 
-* Log-In / Sign-Up
+* Log-In
 * neue Abos erstellen (Kundenanmeldung geht nur über Cafémitarbeiter)
 * Kundenkarte scannen und freien Kaffee eintragen, dass dieser abgeholt wurde
 
@@ -74,9 +64,9 @@ Diese drei Begriffe werden oft verwechselt, sind aber grundlegend verschieden un
 
 **Im Projekt:**
 
-* Für die Hauptadmins und Mitarbeiter wird ein sicheres Login-System implementiert, das Token-basierte Sessions verwaltet.
-* Die Sessions werden mit JWK (JSON Web Key) signierten Tokens realisiert, um Manipulationen zu verhindern.
-* Rollenbasiertes Zugriffssystem sorgt dafür, dass z.B. Mitarbeiter keine Abos löschen oder Reports sehen können.
+* Für die Hauptadmins, Kunden und Mitarbeiter wird ein sicheres Login-System implementiert, das Token-basierte Sessions verwaltet. Dies dient lediglich zur Authentifizierung.
+* Die Sessions werden mit JWT realisiert, um Manipulationen zu verhindern.
+* Rollenbasiertes Zugriffssystem sorgt dafür, dass z.B. Mitarbeiter keine Abos löschen oder Reports sehen können. Dafür wird für jeden 
 * Es wird sichergestellt, dass mindestens ein Hauptadmin pro Café existiert, um eine permanente Verwaltung zu garantieren.
 
 ---
@@ -89,7 +79,7 @@ Inputvalidierung bedeutet, alle Eingaben der Nutzer oder Clients systematisch au
   Um Datenbankkonsistenz zu bewahren, Fehler zu vermeiden und Sicherheitslücken (z.B. SQL-Injection, Cross-Site Scripting) zu verhindern.
 
 * **Frontend und Backend Validierung:**
-  Die erste Kontrollinstanz befindet sich im Frontend, um Nutzern direkt Feedback zu geben. Doch nur die Backendvalidierung ist sicher, da Nutzer das Frontend umgehen können (z.B. durch direkte API-Requests).
+  Die erste Kontrollinstanz befindet sich im Frontend, welches nicht implementiert ist, um Nutzern direkt Feedback zu geben. Doch nur die Backendvalidierung ist sicher, da Nutzer das Frontend umgehen können (z.B. durch direkte API-Requests).
 
 * **Beispiele im Projekt:**
 
@@ -100,21 +90,8 @@ Inputvalidierung bedeutet, alle Eingaben der Nutzer oder Clients systematisch au
 
 ---
 
-### 3. **Verbindungen zu Drittsystemen**
-
-Moderne Anwendungen binden oft externe Dienste ein, um bestimmte Aufgaben auszulagern und zu spezialisieren.
-
-* **Beispiel: Zahlungsdienstleister**
-  Im Projekt wird für die Onlinezahlung ein externer Zahlungsanbieter wie PayPal vorgesehen. Das Backend kommuniziert mit dessen API, um wiederkehrende Zahlungen sicher abzuwickeln.
-
-* **Vorteile der Integration:**
-
-  * Sicherheit: Zahlungsanbieter kümmern sich um sensible Zahlungsinformationen.
-  * Zuverlässigkeit: Zahlungsprozesse sind durch erprobte Services abgesichert.
-  * Komfort: Automatische Abwicklung von wiederkehrenden Zahlungen, Stornierungen, Rückerstattungen.
-
-* **Implementierung:**
-  Im Prototypen wird eine Dummy-Klasse genutzt, um die Logik zu simulieren. Später kann die offizielle API nahtlos eingebunden werden.
+### 3. **Containerisierung:**
+Für eine verbesserte Portabilität, lässt sich das gesamte Projekt als 
 
 ---
 
@@ -146,24 +123,17 @@ Viele Systeme benötigen zeitgesteuerte Prozesse, die automatisch und regelmäß
 
 Sessionmanagement sorgt für eine sichere und nutzerfreundliche Verwaltung von Benutzerzuständen.
 
-* **Tokenbasierte Sessions (z.B. JWT/JWK):**
+* **Tokenbasierte Sessions:**
 
   * Nach erfolgreichem Login erhält der Nutzer einen Token, der seine Identität bestätigt.
   * Der Token enthält Informationen über die Rolle und Berechtigungen.
-  * Der Server prüft bei jeder Anfrage den Token auf Gültigkeit und Berechtigung.
+  * Der Server prüft bei jeder Anfrage den Token auf Gültigkeit und Berechtigung. Dies ist nicht implementiert.
 
 * **Sicherheitsaspekte:**
 
-  * Tokens sind zeitlich begrenzt, um Missbrauch zu verhindern.
+  * Um Missbrauch zu verhindern, ein Token verliert nach 20 min seine Gültigkeit. So kann verhindert werden, dass unauthorisierte Nutzer Tokens abfangen und zeitlich uneingeschränkt Zugriff auf das System haben können.
   * Tokens sind digital signiert, um Manipulation zu erkennen.
-  * Bei Logout oder Inaktivität wird die Session invalidiert.
-
-* **Im Projekt:**
-
-  * Die Sessiondauer kann vom Hauptadmin individuell festgelegt werden.
-  * Mitarbeiter- und Hauptadmin-Sessions unterscheiden sich in ihren Berechtigungen.
-  * Kunden erhalten eigene Session-Token zur Anzeige ihres Abos.
-
+  * Bei Logout oder Inaktivität wird die Session invalidiert. (nicht implementiert, es wurde lediglich ein Login für Angestellte und Nutzer implementiert)
 ---
 
 ### 6. **Weitere relevante technische Aspekte**

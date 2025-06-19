@@ -1,9 +1,2 @@
-fastapi
-uvicorn[standard]
-pydantic
-python-multipart
-passlib
-sqlalchemy
-pytest
-bcrypt
-python-jose
+docker build -t coffee-abonnements .
+docker run -d -p 8000:8000 coffee-abonnements

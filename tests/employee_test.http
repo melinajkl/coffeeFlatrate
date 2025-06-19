@@ -51,5 +51,7 @@ Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 
 employee_id=12434&cafe_id=Caf%C3%A9_am_Rande_der_Welt&password=strongpassword1234
-
-### example protected troute: creating a new abonnement in abocontroller
+### example protected troute: creating a new abonnement
+POST http://127.0.0.1:8000/abo/
+Content-Type: application/json
+Authorization: 

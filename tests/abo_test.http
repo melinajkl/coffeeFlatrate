@@ -1,0 +1,18 @@
+
+### 
+POST http://127.0.0.1:8000/employees/login
+Content-Type: application/x-www-form-urlencoded
+Accept: application/json
+
+employee_id=12434&cafe_id=Caf%C3%A9_am_Rande_der_Welt&password=strongpassword1234
+
+### example protected troute: creating a new abonnement
+POST http://127.0.0.1:8000/abo/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjQzNCIsImNhZmVfaWQiOiJDYWZcdTAwZTlfYW1fUmFuZGVfZGVyX1dlbHQiLCJzdWRvIjpmYWxzZSwicm9sZSI6IkVtcGxveWVlIiwiZXhwIjoxNzUwMjYyNjIyfQ.mPAU5NFiqxOQPIPaabSdo97d8--o4QjRXxJA01-w0-8
+
+{   
+    "model_id": "small",
+    "cafe_id": "Café_am_Rande_der_Welt",
+    "customer_id": "0fbfe055-9e4a-440f-bedc-a4b432245ee9"
+}

@@ -10,3 +10,7 @@ class AboCreate(BaseModel):
     """
     model_id: str
     cafe_id: str
+    customer_id: str
+    
+    class Config: 
+        orm_mode = True

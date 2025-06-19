@@ -41,7 +41,8 @@ def authenticate_employee(db: Session, employee_id: str, cafe_id: str, password:
     token_data = {
         "sub": employee.id,
         "cafe_id": employee.cafe_id,
-        "sudo": employee.sudo
+        "sudo": employee.sudo,
+        "role": "Employee"
     }
 
     return create_access_token(token_data)
@@ -68,9 +69,9 @@ def authenticate_customer(db: Session, emailS: EmailStr, password: str) -> str:
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
     token_data = {
-        "id": customer.id,
+        "sub": customer.id,
         "name": customer.name,
-        "drinksdrunk": customer.drinksDrunk
+        "role": "Customer"
     }
 
     return create_access_token(token_data)
