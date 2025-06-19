@@ -1,12 +1,23 @@
+### anlegen eines neuen Cafes -> Inputvalidierung
+POST http://localhost:8000/cafes/
+Content-Type: application/json
 
-### 
+{
+  "id": "Café am Rande der Welt",
+  "iban": "DE44500105175407324931",
+  "bic": "DEUTDEFF",
+  "account_holder": "café am rande der welt",
+  "abomodels": ["small", "small+"]
+}
+
+### login mitarbeiter -> authentifizierung und session handling da als response das Token gegeben wird. 
 POST http://127.0.0.1:8000/employees/login
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 
 employee_id=1234&cafe_id=Caf%C3%A9_am_Rande_der_Welt&password=strongpassword1234
 
-### example protected troute: creating a new abonnement
+### geschützte Route, es muss das zuvor erhaltene Token bei *hier* ersetzt werden -> funktioniert nicht
 POST http://127.0.0.1:8000/abo/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0IiwiY2FmZV9pZCI6IkNhZlx1MDBlOV9hbV9SYW5kZV9kZXJfV2VsdCIsInN1ZG8iOnRydWUsInJvbGUiOiJFbXBsb3llZSIsInRva2VuX3R5cGUiOiJiZWFyZXIiLCJleHAiOjE3NTAzNjI1NDl9.ngNSvjHZXpureEZLIshGSgVo_IRFp8XBU2qmGssgpsU
@@ -16,3 +27,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0IiwiY
     "cafe_id": "Café_am_Rande_der_Welt",
     "customer_id": "0fbfe055-9e4a-440f-bedc-a4b432245ee9"
 }
+
+### Zugriff auf wöchentliche reports, die als wiederkehrende Aufgaben betrachtet werden können
+GET http://127.0.0.1:8000/report/weekly

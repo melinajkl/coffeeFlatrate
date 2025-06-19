@@ -42,7 +42,8 @@ def authenticate_employee(db: Session, employee_id: str, cafe_id: str, password:
         "sub": employee.id,
         "cafe_id": employee.cafe_id,
         "sudo": employee.sudo,
-        "role": "Employee"
+        "role": "Employee",
+        "token_type": "bearer"
     }
 
     return create_access_token(token_data)

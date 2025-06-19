@@ -50,7 +50,7 @@ class CafeOut(BaseModel):
     account_holder: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class CafeOutB(BaseModel):
@@ -72,4 +72,4 @@ class CafeOutB(BaseModel):
     abomodels: List[str]  # Optionally: List[AboModelOut] if full model details are needed
 
     class Config:
-        orm_mode = True
+        from_attributes = True

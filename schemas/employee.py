@@ -32,7 +32,7 @@ class EmployeeOut(BaseModel):
     sudo: bool
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class EmployeeDelete(BaseModel):

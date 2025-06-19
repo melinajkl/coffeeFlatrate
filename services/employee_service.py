@@ -13,6 +13,7 @@ Functions:
 - delete_employee
 """
 from typing import List
+from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
 from models.model import Employee
@@ -94,6 +95,8 @@ def patch_employee(model: EmployeeCreate, db: Session) -> EmployeeOut:
             Employee.id == model.id
         )
     ).first()
+    if not emp:
+        raise HTTPException(404, "User not found")
     emp.name = model.name
     emp.sudo = model.sudo
     emp.hashed_password = hash_password(model.password)

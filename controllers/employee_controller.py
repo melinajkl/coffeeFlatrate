@@ -1,6 +1,21 @@
+"""
+This module defines routes for managing employees in the CoffeeClub system.
+
+Endpoints:
+- POST /employees/: Register a new employee
+- GET /employees/{cafe_id}/employee/{id}: Get a specific employee by composite key
+- GET /employees/{id}/employees: Get all employees of a café
+- PATCH /employees/: Update an employee
+- DELETE /employees/: Delete an employee
+- POST /employees/login: Authenticate an employee and return a JWT token
+
+All actions (except login) require DB session injection. Authentication is handled via auth_service.
+"""
+
 from typing import List
 from fastapi import APIRouter, Depends, Form
 from sqlalchemy.orm import Session
+
 from schemas.token import Token
 from schemas.employee import EmployeeCreate, EmployeeOut, EmployeeDelete
 from services import employee_service, auth_service
@@ -15,65 +30,72 @@ def register_employee(employee: EmployeeCreate, db: Session = Depends(get_db)):
 
     Args:
         employee (EmployeeCreate): Employee registration data.
-        db (Session): Database session (injected).
+        db (Session): SQLAlchemy session for database operations.
 
     Returns:
-        EmployeeOut: Data of the created employee (excluding password).
+        EmployeeOut: Created employee data without password.
     """
     return employee_service.create_employee(db, employee)
+
 
 @router.get("/{cafe_id}/employee/{id}")
 def get_employee(cafe_id: str, id: str, db: Session = Depends(get_db)):
     """
-    Retrieve a single employee by café ID and employee ID (composite key).
+    Retrieve a single employee using the composite key (café ID + employee ID).
 
     Args:
         cafe_id (str): ID of the café.
         id (str): ID of the employee.
 
     Returns:
-        dict: Full employee data (optional - consider limiting fields).
+        dict: Full employee information.
     """
     return employee_service.get_employee(cafe_id, id, db)
+
 
 @router.get("/{id}/employees", response_model=List[EmployeeOut])
 def get_all_emp(id: str, db: Session = Depends(get_db)):
     """
-    Get all employees of a specific café.
+    Get all employees working at a specific café.
 
     Args:
         id (str): Café ID.
 
     Returns:
-        List[EmployeeOut]: List of employees for the café.
+        List[EmployeeOut]: List of employees registered at the café.
     """
     return employee_service.get_all_employees(id, db)
+
 
 @router.patch("/", response_model=EmployeeOut)
 def patch_emp(model: EmployeeCreate, db: Session = Depends(get_db)):
     """
-    Update an existing employee's data (except password unless handled inside).
+    Update employee data.
 
     Args:
-        model (EmployeeCreate): New employee data to apply.
+        model (EmployeeCreate): Updated employee information.
+        db (Session): SQLAlchemy session for database operations.
 
     Returns:
-        EmployeeOut: Updated employee information.
+        EmployeeOut: The updated employee data.
     """
     return employee_service.patch_employee(model, db)
+
 
 @router.delete("/")
 def delete_emp(emp: EmployeeDelete, db: Session = Depends(get_db)):
     """
-    Delete an employee using ID and café ID.
+    Delete an employee using the composite key (café ID + employee ID).
 
     Args:
-        emp (EmployeeDelete): Composite key to identify the employee.
+        emp (EmployeeDelete): Identifiers for the employee to be deleted.
+        db (Session): SQLAlchemy session for database operations.
 
     Returns:
         dict: Confirmation message.
     """
     return employee_service.delete_employee(emp, db)
+
 
 @router.post("/login", response_model=Token)
 def login(
@@ -83,12 +105,13 @@ def login(
     db: Session = Depends(get_db)
 ):
     """
-    Authenticate an employee and return an access token.
+    Authenticate an employee and return a JWT access token.
 
     Args:
-        employee_id (str): ID of the employee.
-        cafe_id (str): Café ID for context.
+        employee_id (str): Unique employee ID.
+        cafe_id (str): Café ID the employee belongs to.
         password (str): Plaintext password.
+        db (Session): SQLAlchemy session for authentication.
 
     Returns:
         Token: JWT access token and type.

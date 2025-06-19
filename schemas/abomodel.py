@@ -16,7 +16,7 @@ class AboModelBase(BaseModel):
     amount: int
 
     class Config:
-        orm_mode = True  # Allows use of ORM objects directly
+        from_attributes = True 
 
 
 class AboModelCreate(AboModelBase):
@@ -24,4 +24,3 @@ class AboModelCreate(AboModelBase):
     Schema for creating a new AboModel.
     Inherits all attributes from AboModelBase without modification.
     """
-    pass

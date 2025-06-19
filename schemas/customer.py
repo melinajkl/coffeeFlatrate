@@ -36,7 +36,7 @@ class CustomerOut(BaseModel):
     lastPaid: Optional[date]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class CustomerStats(BaseModel):
